@@ -1,0 +1,105 @@
+@charset "UTF-8";
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "overrides";
+@import "app/animate";
+
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+  display: block;
+}
+
+.panel-title {
+  a {
+    padding: 10px 15px;
+  }
+
+  i {
+    color: $gray;
+  }
+}
+
+.panel-default > .panel-heading {
+  padding: 0;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.navbar-brand {
+  padding-left: 0;
+}
+
+.navbar-toggle {
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-top: 4px;
+  padding: 5px 5px 1px 5px;
+  font-size: .9em;
+  color: #888;
+
+  .icon-bar {
+    margin: 0 auto;
+  }
+}
+
+label {
+  font-weight: normal;
+  padding-left: .5em;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.modal {
+  overflow-y: inherit;
+}
+
+.scroll-spy-nav {
+  top: 0;
+
+  @media (min-width: 768px) {
+    top: 1em;
+    padding-left: 0;
+    padding-right: 0;
+
+    ul {
+      margin:1em 0;
+    }
+  }
+}
+
+
+.tips-container a {
+  -ms-word-break: break-all;
+
+   /* Be VERY careful with this, breaks normal words wh_erever */
+   word-break: break-all;
+
+   /* Non standard for webkit */
+   word-break: break-word;
+
+-webkit-hyphens: auto;
+   -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.absolute {
+  position: absolute;
+  width: 100%;
+}
+.unseen {
+  display: none;
+}
+.container {
+  position: relative;
+}

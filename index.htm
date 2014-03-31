@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html ng-app="TipsApp" lang="en">
+<head>
+<meta charset="utf-8">
+<title>Missing Person Investigator</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/app.css">
+<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="css/app.min.css"> -->
+  <!--[if lte IE 8]>
+  <script>
+    document.createElement('accordion');
+    document.createElement('accordion-group');
+    document.createElement('accordion-heading');
+  </script>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <![endif]-->
+
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body ng-controller="TipsCtrl" data-scrollspy data-scrollspy-offset="200">
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" ng-click="navCollapsed = !navCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>Menu
+        </button>
+        <a class="navbar-brand" href="./">Missing Person Investigator</a>
+      </div>
+      <div class="collapse navbar-collapse" collapse="navCollapsed" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="" ng-click="openInfo();"><i class="glyphicon glyphicon-info-sign"></i> About</a></li>
+          <li><a class="" ng-click="openStartOver();"><i class="glyphicon glyphicon-repeat"></i>  Start Over</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="absolute" ng-class="
+    {'animated fadeIn' : isTypeIn,
+     'animated slideOutLeft' : isTypeOut,
+     'unseen' : isTypeHidden}">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Case Type?</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <p><a class="btn btn-primary btn-lg btn-block" ng-click="isMc()">Missing Child</a></p>
+      </div>
+      <div class="col-sm-4">
+        <p><a class="btn btn-primary btn-lg btn-block" ng-click="isMcs()">Missing College Student</a></p>
+      </div>
+      <div class="col-sm-4">
+        <p><a class="btn btn-primary btn-lg btn-block" ng-click="isMva()">Missing Vulnerable Adult</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="absolute" ng-class="
+    {'animated slideInRight' : isCircIn,
+     'animated slideOutLeft' : isCircOut,
+     'unseen' : isCircHidden}">
+    <accordion close-others="true">
+      <accordion-group is-open="$parent.isCircPanelOpen">
+        <accordion-heading>
+          <i class="glyphicon" ng-class="{'glyphicon glyphicon-minus': circOpen, 'glyphicon glyphicon-plus': !circOpen}"></i> <span  ng-click="closeTips()">Circumstances</span>
+        </accordion-heading>
+        <div class="row">
+          <div class="col-sm-12">
+          <h4>Choose circumstances surrounding the missing case.</h4>
+          </div>
+          <div class="col-sm-4">
+            <fieldset>
+            <legend>Age</legend>
+              <p><input type="checkbox" ng-model="circs.ayc" id="young-child"><label for="young-child">Young Child 0-12</label></p>
+              <p><input type="checkbox" ng-model="circs.ac" id="child"><label for="child">Child 13-18</label></p>
+              <p><input type="checkbox" ng-model="circs.aa" id="adult"><label for="adult">Adult 18 and over</label></p>
+            </fieldset>
+          </div>
+          <div class="col-sm-4">
+            <fieldset>
+            <legend>Health and Safety</legend>
+              <p><input type="checkbox" ng-model="circs.alz" id="alz"><label for="alz">Alzheimers/Dementia</label></p>
+              <p><input type="checkbox" ng-model="circs.dd" id="disabled"><label for="disabled">Developmentally Disabled</label></p>
+              <p><input type="checkbox" ng-model="circs.ds" id="suicidal"><label for="suicidal">Despondent/Suicidal</label></p>
+              <p><input type="checkbox" ng-model="circs.aut" id="autism"><label for="autism">Autism</label></p>
+              <p><input type="checkbox" ng-model="circs.med" id="medical"><label for="medical">Medical Conditions</label></p>
+            </fieldset>
+          </div>
+          <div class="col-sm-4">
+            <fieldset>
+            <legend>Situational</legend>
+              <p><input type="checkbox" ng-model="circs.abd" id="abduction"><label for="abduction">Abduction</label></p>
+              <p><input type="checkbox" ng-model="circs.run" id="runaway"><label for="runaway">Runaway</label></p>
+              <p><input type="checkbox" ng-model="circs.unk" id="unknown"><label for="unknown">Unknown</label></p>
+              <p><input type="checkbox" ng-model="circs.lwa" id="lost"><label for="lost">Lost/Wandered Away</label></p>
+              <p><input type="checkbox" ng-model="circs.veh" id="vehicle"><label for="vehicle">In a Vehicle</label></p>
+              <p><input type="checkbox" ng-model="circs.oft" id="onfoot"><label for="onfoot">On Foot</label></p>
+            </fieldset>
+          </div>
+          <div class="col-xs-12">
+            <p><a class="btn btn-lg btn-success btn-block" ng-click="go(); getNavPos();" ng-class="{'disabled' : !circs.ayc &amp;&amp; !circs.ac &amp;&amp; !circs.aa &amp;&amp; !circs.alz &amp;&amp; !circs.dd &amp;&amp; !circs.ds &amp;&amp; !circs.aut &amp;&amp; !circs.abd &amp;&amp; !circs.run &amp;&amp; !circs.unk &amp;&amp; !circs.lwa &amp;&amp; !circs.med &amp;&amp; !circs.veh &amp;&amp; !circs.oft }">View List</a></p>
+          </div>
+        </div>
+      </accordion-group>
+     </accordion>
+  </div>
+  <div class="absolute" scroll-spy ng-class="
+    {'animated slideInRight' : isTipsIn,
+     'animated slideOutLeft' : isTipsOut,
+     'unseen' : isTipsHidden}">
+    <div class="row">
+      <div class="col-sm-4 col-xs-12">
+        <nav class="navbar navbar-default scroll-spy-nav" role="navigation" id="nav" data-scrollspy-nav>
+          <div class="container-fluid">
+            <ul class="nav nav-pills nav-stacked hidden-xs">
+              <li data-scrollspy-listen="tips"><a href="#tips" class="">Tips</a></li>
+              <li data-scrollspy-listen="resources"><a href="#resources" class="">Resources</a></li>
+              <li><a class="" ng-click="toTop()"><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</a></li>
+              <li><a class="" ng-click="openStartOver();"><i class="glyphicon glyphicon-repeat"></i>  Start Over</a></li>
+            </ul>
+            <a href="#tips" data-scrollspy-listen="tips" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Tips</a>
+            <a href="#resources" data-scrollspy-listen="resources" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Resources</a>
+            <a class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg pull-right" ng-click="toTop()"><span class="glyphicon glyphicon-chevron-up"></span> Top</a>
+          </div>
+        </nav>
+      </div>
+      <div class="col-sm-8 col-xs-12">
+        <div data-scrollspy-broadcast id="tips" class="scroll-spy-padding">
+          <h1>Tips</h1>
+          <accordion close-others="false">
+            <accordion-group is-open="isopen" ng-repeat="tip in tips | typeFilter:types | circFilter:circs">
+              <accordion-heading>
+                {{tip.title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': isopen, 'glyphicon-plus': !isopen}"></i>
+              </accordion-heading>
+              {{tip.detail}} <a href="{{tip.link}}" target="_blank">{{tip.linkText}}</a>
+            </accordion-group>
+          </accordion>
+        </div>
+        <div data-scrollspy-broadcast id="resources" class="scroll-spy-padding">
+          <h1>Resource Contacts</h1>
+          <div class="contact" ng-repeat="resource in resources">
+            <h3>{{resource.name}}</h3>
+            <p><b>For help with:</b> {{resource.details}}</p>
+            <p ng-if="resource.phn"><span class="glyphicon glyphicon-earphone"></span> <a href="tel:{{resource.phn}}">{{resource.phn}}</a></p>
+            <p ng-if="resource.url"><span class="glyphicon glyphicon-globe"></span> <a href="{{resource.url}}" target="_blank">{{resource.url}}</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+  </footer>
+</div>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.7/fastclick.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+
+<!-- <script src="js/application.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/ng-scrollspy.js"></script>
+<script src="js/angular-ui-bootstrap.js"></script>
+ -->
+
+<script src="js/bootstrap.js"></script>
+<!-- <script src="js/bootstrap.min.js"></script> -->
+</body>
+</html>
