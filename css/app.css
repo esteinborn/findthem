@@ -1,3 +1,16 @@
+.navbar-brand {
+  padding-left: 0; }
+
+.navbar-toggle {
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-top: 4px;
+  padding: 5px 5px 1px 5px;
+  font-size: 0.9em;
+  color: #888; }
+  .navbar-toggle .icon-bar {
+    margin: 0 auto; }
+
 .container-fluid > .navbar-collapse {
   position: absolute;
   background: #f8f8f8;
@@ -12,6 +25,41 @@
       position: static;
       border-bottom: 0;
       width: auto; } }
+
+.scroll-spy-nav {
+  top: 0;
+  margin-bottom: 0; }
+  @media (min-width: 768px) {
+    .scroll-spy-nav {
+      top: 1em;
+      padding-left: 0;
+      padding-right: 0; }
+      .scroll-spy-nav ul {
+        margin: 1em 0; } }
+
+.tips-nav-container {
+  height: 55px; }
+
+.scroll-spy-padding {
+  padding-top: 2.5em; }
+  @media (min-width: 768px) {
+    .scroll-spy-padding {
+      padding-top: 0; } }
+
+.collapsing, .fade {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0); }
+
+.collapsing {
+  -webkit-transition: height 0.2s ease;
+  transition: height 0.2s ease; }
 
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer;
@@ -28,19 +76,6 @@
 html {
   overflow-y: scroll; }
 
-.navbar-brand {
-  padding-left: 0; }
-
-.navbar-toggle {
-  margin-right: 0;
-  margin-bottom: 0;
-  margin-top: 4px;
-  padding: 5px 5px 1px 5px;
-  font-size: 0.9em;
-  color: #888; }
-  .navbar-toggle .icon-bar {
-    margin: 0 auto; }
-
 label {
   font-weight: normal;
   padding-left: 0.5em; }
@@ -49,16 +84,6 @@ label {
 
 .modal {
   overflow-y: inherit; }
-
-.scroll-spy-nav {
-  top: 0; }
-  @media (min-width: 768px) {
-    .scroll-spy-nav {
-      top: 1em;
-      padding-left: 0;
-      padding-right: 0; }
-      .scroll-spy-nav ul {
-        margin: 1em 0; } }
 
 .resources a {
   -ms-word-break: break-all;
@@ -73,20 +98,5 @@ label {
 .required {
   color: red;
   font-size: 0.6em; }
-
-.collapsing, .fade {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
-  transform: translateZ(0); }
-
-.collapsing {
-  -webkit-transition: height 0.2s ease;
-  transition: height 0.2s ease; }
 
 /*# sourceMappingURL=app.css.map */

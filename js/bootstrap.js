@@ -83,8 +83,15 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
     };
   };
 
-  $scope.toTop = function() {
-    window.scrollTo(0, 0);
+  $scope.toTop = function(ofTips) {
+    console.log(ofTips);
+    if (ofTips) {
+      console.log("ofTips true");
+      window.scrollTo(0, 190);
+    } else {
+      console.log("ofTips false");
+      window.scrollTo(0, 0);
+    }
   };
 
   $scope.resetHash = function() {
@@ -130,12 +137,12 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
   $scope.getNavPos = function(){
     return setTimeout(function(){
       $scope.navPos = document.getElementById('nav').getBoundingClientRect().top;
+
     }, 500);
 
   };
 
   $scope.openInfo = function () {
-
     var modalInstance = $modal.open({
       templateUrl: 'about.htm',
       controller: AboutCtrl
@@ -143,15 +150,12 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
   };
 
   var AboutCtrl = function ($scope, $modalInstance) {
-
     $scope.ok = function () {
       $modalInstance.close();
     };
-
   };
 
   $scope.openStartOver = function () {
-
     var modalInstance = $modal.open({
       templateUrl: 'startover.htm',
       controller: StartOverCtrl
@@ -172,7 +176,6 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
     $scope.cancel = function () {
       $modalInstance.close();
     };
-
   };
 
   $scope.types = {
@@ -4112,7 +4115,8 @@ angular.module( 'ngScrollSpy', [] )
           scope.currentScroll = ( window.pageYOffset !== undefined ) ? window.pageYOffset : ( document.documentElement || document.body.parentNode || document.body ).scrollTop;
           scope.isVisible = element[0].offsetWidth > 0 || element[0].offsetHeight > 0;
 
-          if( scope.isVisible && (scope.$parent.navPos <=  scope.currentScroll)) {
+          // if( scope.isVisible && (scope.$parent.navPos <=  scope.currentScroll)) {
+          if( scope.isVisible && (scope.currentScroll >= 155 )) {
             if (window.matchMedia){
               if (window.matchMedia("(max-width: 768px), (max-device-width:1023px)").matches) {
                 scope.isAffixedSmall = true;

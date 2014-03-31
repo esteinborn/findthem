@@ -120,7 +120,8 @@ angular.module( 'ngScrollSpy', [] )
           scope.currentScroll = ( window.pageYOffset !== undefined ) ? window.pageYOffset : ( document.documentElement || document.body.parentNode || document.body ).scrollTop;
           scope.isVisible = element[0].offsetWidth > 0 || element[0].offsetHeight > 0;
 
-          if( scope.isVisible && (scope.$parent.navPos <=  scope.currentScroll)) {
+          // if( scope.isVisible && (scope.$parent.navPos <=  scope.currentScroll)) {
+          if( scope.isVisible && (scope.currentScroll >= 155 )) {
             if (window.matchMedia){
               if (window.matchMedia("(max-width: 768px), (max-device-width:1023px)").matches) {
                 scope.isAffixedSmall = true;

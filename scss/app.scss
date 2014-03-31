@@ -7,6 +7,8 @@
 @import "bootstrap/mixins";
 @import "overrides";
 @import "app/navbar";
+@import "app/scroll-spy";
+@import "app/gpu-css";
 
 .nav,
 .pagination,
@@ -34,23 +36,6 @@ html {
   overflow-y: scroll;
 }
 
-.navbar-brand {
-  padding-left: 0;
-}
-
-.navbar-toggle {
-  margin-right: 0;
-  margin-bottom: 0;
-  margin-top: 4px;
-  padding: 5px 5px 1px 5px;
-  font-size: .9em;
-  color: #888;
-
-  .icon-bar {
-    margin: 0 auto;
-  }
-}
-
 label {
   font-weight: normal;
   padding-left: .5em;
@@ -63,21 +48,6 @@ label {
 .modal {
   overflow-y: inherit;
 }
-
-.scroll-spy-nav {
-  top: 0;
-
-  @media (min-width: 768px) {
-    top: 1em;
-    padding-left: 0;
-    padding-right: 0;
-
-    ul {
-      margin:1em 0;
-    }
-  }
-}
-
 
 .resources a {
   -ms-word-break: break-all;
@@ -96,21 +66,4 @@ label {
 .required {
   color: red;
   font-size: .6em;
-}
-
-.collapsing,
-.fade {
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-  -webkit-perspective: 1000;
-          perspective: 1000;
-  -webkit-transform: translateZ(0);
-     -moz-transform: translateZ(0);
-      -ms-transform: translateZ(0);
-       -o-transform: translateZ(0);
-          transform: translateZ(0);
-}
-
-.collapsing {
-    @include transition(height .2s ease);
 }

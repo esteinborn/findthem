@@ -1,3 +1,21 @@
+.navbar-brand {
+  padding-left: 0;
+}
+
+.navbar-toggle {
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-top: 4px;
+  padding: 5px 5px 1px 5px;
+  font-size: .9em;
+  color: #888;
+
+  .icon-bar {
+    margin: 0 auto;
+  }
+}
+
+// This is for the collapse nav to not push the whole page downward when you click the menu, it will overlay the content instead, its much more performant.
 .container-fluid > .navbar-collapse {
   position: absolute;
   background: $navbar-default-bg;
