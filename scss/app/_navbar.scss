@@ -1,0 +1,16 @@
+.container-fluid > .navbar-collapse {
+  position: absolute;
+  background: $navbar-default-bg;
+  width: 101%;
+  left: -1px;
+  z-index: 1000;
+  border-top: 0;
+  border-bottom: 1px solid $navbar-default-border;
+  margin: 0;
+
+  @media (min-width: $grid-float-breakpoint) {
+    position: static;
+    border-bottom: 0;
+    width: auto;
+  }
+}

@@ -1,5 +1,5 @@
 // Code goes here
-/* global angular: true, window: true, document: true, console: true, setTimeout: true */
+/* global angular: true, window: true, document: true, console: true, setTimeout: true, history: true */
 /* jslint globalstrict: true */
 
 "use strict";
@@ -85,6 +85,14 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
 
   $scope.toTop = function() {
     window.scrollTo(0, 0);
+  };
+
+  $scope.resetHash = function() {
+    if (history.pushState) {
+      setTimeout(function(){
+        history.pushState('', document.title, window.location.pathname);
+      }, 1);
+    }
   };
 
   $scope.closeType = function(){

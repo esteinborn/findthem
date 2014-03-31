@@ -6,6 +6,7 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 @import "overrides";
+@import "app/navbar";
 
 .nav,
 .pagination,
@@ -78,21 +79,38 @@ label {
 }
 
 
-.tips-container a {
+.resources a {
   -ms-word-break: break-all;
 
    /* Be VERY careful with this, breaks normal words wh_erever */
-   word-break: break-all;
+      word-break: break-all;
 
    /* Non standard for webkit */
-   word-break: break-word;
+      word-break: break-word;
 
--webkit-hyphens: auto;
-   -moz-hyphens: auto;
-  hyphens: auto;
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+          hyphens: auto;
 }
 
 .required {
   color: red;
   font-size: .6em;
+}
+
+.collapsing,
+.fade {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-perspective: 1000;
+          perspective: 1000;
+  -webkit-transform: translateZ(0);
+     -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+       -o-transform: translateZ(0);
+          transform: translateZ(0);
+}
+
+.collapsing {
+    @include transition(height .2s ease);
 }

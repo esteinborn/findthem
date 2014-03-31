@@ -1,3 +1,18 @@
+.container-fluid > .navbar-collapse {
+  position: absolute;
+  background: #f8f8f8;
+  width: 101%;
+  left: -1px;
+  z-index: 1000;
+  border-top: 0;
+  border-bottom: 1px solid #e7e7e7;
+  margin: 0; }
+  @media (min-width: 768px) {
+    .container-fluid > .navbar-collapse {
+      position: static;
+      border-bottom: 0;
+      width: auto; } }
+
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer;
   display: block; }
@@ -45,7 +60,7 @@ label {
       .scroll-spy-nav ul {
         margin: 1em 0; } }
 
-.tips-container a {
+.resources a {
   -ms-word-break: break-all;
   /* Be VERY careful with this, breaks normal words wh_erever */
   word-break: break-all;
@@ -58,5 +73,20 @@ label {
 .required {
   color: red;
   font-size: 0.6em; }
+
+.collapsing, .fade {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0); }
+
+.collapsing {
+  -webkit-transition: height 0.2s ease;
+  transition: height 0.2s ease; }
 
 /*# sourceMappingURL=app.css.map */

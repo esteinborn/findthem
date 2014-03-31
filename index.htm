@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="TipsApp" lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>Missing Person Investigator</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -117,12 +117,12 @@
         <nav class="navbar navbar-default scroll-spy-nav" role="navigation" id="nav" data-scrollspy-nav>
           <div class="container-fluid">
             <ul class="nav nav-pills nav-stacked hidden-xs">
-              <li data-scrollspy-listen="tips"><a href="#tips" class="">Tips</a></li>
-              <li data-scrollspy-listen="resources"><a href="#resources" class="">Resources</a></li>
-              <li><a class="" ng-click="toTop()"><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</a></li>
+              <li data-scrollspy-listen="tips"><a href="#tips" ng-click="resetHash()" class="">Tips</a></li>
+              <li data-scrollspy-listen="resources"><a href="#resources" ng-click="resetHash()" class="">Resources</a></li>
+              <li><a ng-click="toTop()"><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</a></li>
             </ul>
-            <a href="#tips" data-scrollspy-listen="tips" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Tips</a>
-            <a href="#resources" data-scrollspy-listen="resources" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Resources</a>
+            <a href="#tips" ng-click="resetHash()" data-scrollspy-listen="tips" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Tips</a>
+            <a href="#resources" ng-click="resetHash()" data-scrollspy-listen="resources" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Resources</a>
             <a class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg pull-right" ng-click="toTop()"><span class="glyphicon glyphicon-chevron-up"></span> Top</a>
           </div>
         </nav>
@@ -139,7 +139,7 @@
             </accordion-group>
           </accordion>
         </div>
-        <div data-scrollspy-broadcast id="resources" class="scroll-spy-padding">
+        <div data-scrollspy-broadcast id="resources" class="scroll-spy-padding resources">
           <h1>Resource Contacts</h1>
           <div class="contact" ng-repeat="resource in resources">
             <h3>{{resource.name}}</h3>
@@ -156,7 +156,13 @@
 </div>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.7/fastclick.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
-
+<script>
+if (Element.prototype.addEventListener) {
+  window.addEventListener('load', function() {
+    FastClick.attach(document.body);
+  }, false);
+}
+</script>
 <!-- <script src="js/application.js"></script>
 <script src="js/filters.js"></script>
 <script src="js/ng-scrollspy.js"></script>
