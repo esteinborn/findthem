@@ -47,10 +47,7 @@
   </div>
 </nav>
 <div class="container">
-  <div class="absolute" ng-class="
-    {'animated fadeIn' : isTypeIn,
-     'animated slideOutLeft' : isTypeOut,
-     'unseen' : isTypeHidden}">
+  <div collapse="isTypeClosed">
     <div class="row">
       <div class="col-xs-12">
         <h1>Case Type?</h1>
@@ -68,25 +65,22 @@
       </div>
     </div>
   </div>
-  <div class="absolute" ng-class="
-    {'animated slideInRight' : isCircIn,
-     'animated slideOutLeft' : isCircOut,
-     'unseen' : isCircHidden}">
+  <div collapse="isCircClosed" class="circ-container collapse">
     <accordion close-others="true">
       <accordion-group is-open="$parent.isCircPanelOpen">
         <accordion-heading>
-          <i class="glyphicon" ng-class="{'glyphicon glyphicon-minus': circOpen, 'glyphicon glyphicon-plus': !circOpen}"></i> <span  ng-click="closeTips()">Circumstances</span>
+          <i class="glyphicon" ng-class="{'glyphicon glyphicon-minus': isCircPanelOpen, 'glyphicon glyphicon-plus': !isCircPanelOpen}"></i> <span  ng-click="closeTips();">Circumstances</span>
         </accordion-heading>
         <div class="row">
           <div class="col-sm-12">
-          <h4>Choose circumstances surrounding the missing case.</h4>
+          <h4>What circumstances surround this case?</h4>
           </div>
           <div class="col-sm-4">
             <fieldset>
-            <legend>Age</legend>
-              <p><input type="checkbox" ng-model="circs.ayc" id="young-child"><label for="young-child">Young Child 0-12</label></p>
-              <p><input type="checkbox" ng-model="circs.ac" id="child"><label for="child">Child 13-18</label></p>
-              <p><input type="checkbox" ng-model="circs.aa" id="adult"><label for="adult">Adult 18 and over</label></p>
+            <legend>Age <span class="required">* required</span></legend>
+              <p><input type="checkbox" ng-model="circs.ayc" ng-click="isAgeSelected = true" id="young-child"><label for="young-child">Young Child 0-12</label></p>
+              <p><input type="checkbox" ng-model="circs.ac" ng-click="isAgeSelected = true" id="child"><label for="child">Child 13-18</label></p>
+              <p><input type="checkbox" ng-model="circs.aa" ng-click="isAgeSelected = true" id="adult"><label for="adult">Adult 18 and over</label></p>
             </fieldset>
           </div>
           <div class="col-sm-4">
@@ -111,16 +105,13 @@
             </fieldset>
           </div>
           <div class="col-xs-12">
-            <p><a class="btn btn-lg btn-success btn-block" ng-click="go(); getNavPos();" ng-class="{'disabled' : !circs.ayc &amp;&amp; !circs.ac &amp;&amp; !circs.aa &amp;&amp; !circs.alz &amp;&amp; !circs.dd &amp;&amp; !circs.ds &amp;&amp; !circs.aut &amp;&amp; !circs.abd &amp;&amp; !circs.run &amp;&amp; !circs.unk &amp;&amp; !circs.lwa &amp;&amp; !circs.med &amp;&amp; !circs.veh &amp;&amp; !circs.oft }">View List</a></p>
+            <p><a class="btn btn-lg btn-success btn-block" ng-click="go(); getNavPos();" ng-class="{'disabled' : !circs.ayc &amp;&amp; !circs.ac &amp;&amp; !circs.aa}">View List</a></p>
           </div>
         </div>
       </accordion-group>
      </accordion>
   </div>
-  <div class="absolute" scroll-spy ng-class="
-    {'animated slideInRight' : isTipsIn,
-     'animated slideOutLeft' : isTipsOut,
-     'unseen' : isTipsHidden}">
+  <div collapse="isTipsClosed" class="tips-container collapse" scroll-spy>
     <div class="row">
       <div class="col-sm-4 col-xs-12">
         <nav class="navbar navbar-default scroll-spy-nav" role="navigation" id="nav" data-scrollspy-nav>
@@ -129,7 +120,6 @@
               <li data-scrollspy-listen="tips"><a href="#tips" class="">Tips</a></li>
               <li data-scrollspy-listen="resources"><a href="#resources" class="">Resources</a></li>
               <li><a class="" ng-click="toTop()"><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</a></li>
-              <li><a class="" ng-click="openStartOver();"><i class="glyphicon glyphicon-repeat"></i>  Start Over</a></li>
             </ul>
             <a href="#tips" data-scrollspy-listen="tips" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Tips</a>
             <a href="#resources" data-scrollspy-listen="resources" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Resources</a>
@@ -155,7 +145,7 @@
             <h3>{{resource.name}}</h3>
             <p><b>For help with:</b> {{resource.details}}</p>
             <p ng-if="resource.phn"><span class="glyphicon glyphicon-earphone"></span> <a href="tel:{{resource.phn}}">{{resource.phn}}</a></p>
-            <p ng-if="resource.url"><span class="glyphicon glyphicon-globe"></span> <a href="{{resource.url}}" target="_blank">{{resource.url}}</a></p>
+            <p ng-if="resource.url"><span class="glyphicon glyphicon-globe"></span> <a href="{{resource.url}}">{{resource.url}}</a></p>
           </div>
         </div>
       </div>

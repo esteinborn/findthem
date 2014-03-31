@@ -8,88 +8,57 @@ var TipsApp = angular.module("TipsApp", ['TipsApp.filters', 'ui.bootstrap', 'ngS
 TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', '$modal',
   function($scope, $filter, $http, $templateCache, $modal) {
 
-  $scope.isStart = true;
-  $scope.isReset = false;
   $scope.navCollapsed = true;
-  $scope.isTypeIn = true;
-  $scope.isCircIn = false;
-  $scope.isTipsIn = false;
-  $scope.isTypeOut = false;
-  $scope.isCircOut = false;
-  $scope.isTipsOut = false;
-  $scope.isTypeHidden = false;
-  $scope.isCircHidden = true;
-  $scope.isTipsHidden = true;
+  $scope.isTypeClosed = false;
   $scope.isCircClosed = true;
   $scope.isTipsClosed = true;
   $scope.isCircPanelOpen = true;
-  $scope.isStepTwo = false;
-  $scope.isStepThree = false;
+  $scope.isAgeSelected = false;
   $scope.navPos = '0';
 
   $scope.isMc = function() {
     $scope.types.mc = true;
     $scope.types.mcs = false;
     $scope.types.mva = false;
-    $scope.step2();
+    $scope.step1();
   };
 
   $scope.isMcs = function() {
     $scope.types.mc = false;
     $scope.types.mcs = true;
     $scope.types.mva = false;
-    $scope.step2();
+    $scope.step1();
   };
 
   $scope.isMva = function() {
     $scope.types.mc = false;
     $scope.types.mcs = false;
     $scope.types.mva = true;
-    $scope.step2();
+    $scope.step1();
   };
 
-  $scope.step2 = function() {
-    $scope.isStart = false;
-    $scope.isTypeIn = false;
-    $scope.isCircIn = true;
-    $scope.isTipsIn = false;
-    $scope.isTypeOut = true;
-    $scope.isCircOut = false;
-    $scope.isTipsOut = false;
-    $scope.isTypeHidden = false;
-    $scope.isCircHidden = false;
-    $scope.isTipsHidden = true;
+  $scope.step1 = function() {
     $scope.closeType();
     $scope.openCirc();
   };
 
-  $scope.step3 = function() {
-    $scope.isTypeIn = false;
-    $scope.isCircIn = false;
-    $scope.isTipsIn = true;
-    $scope.isTypeOut = false;
-    $scope.isCircOut = true;
-    $scope.isTipsOut = false;
-    $scope.isTypeHidden = true;
-    $scope.isCircHidden = false;
-    $scope.isTipsHidden = false;
+  $scope.step2 = function() {
+    $scope.closeCircPanel();
+    $scope.openTips();
   };
 
   $scope.go = function() {
     $scope.toTop();
-    $scope.step3();
+    $scope.step2();
   };
 
   $scope.startOver = function() {
-    $scope.isTypeIn = true;
-    $scope.isCircIn = false;
-    $scope.isTipsIn = false;
-    $scope.isTypeOut = false;
-    $scope.isCircOut = false;
-    $scope.isTipsOut = false;
-    $scope.isTypeHidden = false;
-    $scope.isCircHidden = true;
-    $scope.isTipsHidden = true;
+    $scope.navCollapsed = true;
+    $scope.toTop();
+    $scope.openType();
+    $scope.closeTips();
+    $scope.closeCirc();
+    $scope.openCircPanel();
     $scope.types = {
       "mc": false,
       "mcs": false,
@@ -119,7 +88,7 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
   };
 
   $scope.closeType = function(){
-    $scope.isTypeOut = true;
+    $scope.isTypeClosed = true;
   };
 
   $scope.openType = function(){
@@ -188,7 +157,6 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
   };
 
   var StartOverCtrl = function ($scope, $modalInstance) {
-
     $scope.ok = function () {
       $modalInstance.close($scope.resetOK= true);
     };
