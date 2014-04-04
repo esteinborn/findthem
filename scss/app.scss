@@ -9,6 +9,7 @@
 @import "app/navbar";
 @import "app/scroll-spy";
 @import "app/gpu-css";
+@import "app/panels";
 
 .nav,
 .pagination,
@@ -16,20 +17,6 @@
 .panel-title a {
   cursor: pointer;
   display: block;
-}
-
-.panel-title {
-  a {
-    padding: 10px 15px;
-  }
-
-  i {
-    color: $gray;
-  }
-}
-
-.panel-default > .panel-heading {
-  padding: 0;
 }
 
 html {
@@ -66,4 +53,30 @@ label {
 .required {
   color: red;
   font-size: .6em;
+}
+
+.tips-container h1 {
+  margin-top: 0;
+  font-size: 2em;
+
+  @media (min-width: $grid-float-breakpoint) {
+    font-size: 3em;
+  }
+}
+
+.tips-container h3 {
+  font-size: 1.5em;
+
+  @media (min-width: $grid-float-breakpoint) {
+    font-size: 1.5em;
+  }
+}
+input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+
+  @media (max-width: $grid-float-breakpoint) {
+    width: 22px;
+    height: 22px;
+  }
 }

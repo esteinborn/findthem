@@ -123,10 +123,10 @@ angular.module( 'ngScrollSpy', [] )
           // if( scope.isVisible && (scope.$parent.navPos <=  scope.currentScroll)) {
           if( scope.isVisible && (scope.currentScroll >= 155 )) {
             if (window.matchMedia){
-              if (window.matchMedia("(max-width: 768px), (max-device-width:1023px)").matches) {
-                scope.isAffixedSmall = true;
-              } else {
+              if (window.matchMedia("(min-width: 767px)").matches) {
                 scope.isAffixedLarge = true;
+              } else {
+                scope.isAffixedSmall = true;
               }
             }
           } else {

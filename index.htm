@@ -24,7 +24,7 @@
   <![endif]-->
 </head>
 
-<body ng-controller="TipsCtrl" data-scrollspy data-scrollspy-offset="200">
+<body ng-controller="TipsCtrl" data-scrollspy data-scrollspy-offset="0">
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <div class="container-fluid">
@@ -35,12 +35,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>Menu
         </button>
-        <a class="navbar-brand" href="./">Missing Person Investigator</a>
+        <a class="navbar-brand" href="./">Missing Person Tips</a>
       </div>
       <div class="collapse navbar-collapse" collapse="navCollapsed" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a class="" ng-click="openInfo();"><i class="glyphicon glyphicon-info-sign"></i> About</a></li>
-          <li><a class="" ng-click="openStartOver();"><i class="glyphicon glyphicon-repeat"></i>  Start Over</a></li>
+          <li><a class="" ng-click="openInfo(); navCollapsed = true"><i class="glyphicon glyphicon-info-sign"></i> About</a></li>
+          <li><a class="" ng-click="openStartOver(); navCollapsed = true"><i class="glyphicon glyphicon-repeat"></i>  Start Over</a></li>
         </ul>
       </div>
     </div>
@@ -48,12 +48,12 @@
 </nav>
 <div class="container">
   <div collapse="isTypeClosed">
-    <div class="row">
+<!--     <div class="row">
       <div class="col-xs-12">
         <h1>Case Type?</h1>
       </div>
-    </div>
-    <div class="row">
+    </div>-->
+      <div class="row">
       <div class="col-sm-4">
         <p><a class="btn btn-primary btn-lg btn-block" ng-click="isMc()">Missing Child</a></p>
       </div>
@@ -69,18 +69,15 @@
     <accordion close-others="true">
       <accordion-group is-open="$parent.isCircPanelOpen">
         <accordion-heading>
-          <i class="glyphicon" ng-class="{'glyphicon glyphicon-minus': isCircPanelOpen, 'glyphicon glyphicon-plus': !isCircPanelOpen}"></i> <span  ng-click="closeTips();">Circumstances</span>
+          <i class="glyphicon" ng-class="{'glyphicon glyphicon-minus': isCircPanelOpen, 'glyphicon glyphicon-plus': !isCircPanelOpen}"></i> <span  ng-click="closeTips();">Choose Circumstances</span>
         </accordion-heading>
         <div class="row">
-          <div class="col-sm-12">
-          <h4>What circumstances surround this case?</h4>
-          </div>
           <div class="col-sm-4">
             <fieldset>
             <legend>Age <span class="required">* required</span></legend>
-              <p><input type="checkbox" ng-model="circs.ayc" ng-click="isAgeSelected = true" id="young-child"><label for="young-child">Young Child 0-12</label></p>
-              <p><input type="checkbox" ng-model="circs.ac" ng-click="isAgeSelected = true" id="child"><label for="child">Child 13-18</label></p>
-              <p><input type="checkbox" ng-model="circs.aa" ng-click="isAgeSelected = true" id="adult"><label for="adult">Adult 18 and over</label></p>
+              <p><input type="checkbox" ng-model="circs.ayc" ng-click="isAgeSelected = true; circs.ac = false; circs.aa = false" id="young-child"><label for="young-child">Young Child 0-12</label></p>
+              <p><input type="checkbox" ng-model="circs.ac" ng-click="isAgeSelected = true; circs.ayc = false; circs.aa = false" id="child"><label for="child">Child 13-17</label></p>
+              <p><input type="checkbox" ng-model="circs.aa" ng-click="isAgeSelected = true; circs.ayc = false; circs.ac = false" id="adult"><label for="adult">Adult 18 and over</label></p>
             </fieldset>
           </div>
           <div class="col-sm-4">
@@ -105,7 +102,7 @@
             </fieldset>
           </div>
           <div class="col-xs-12">
-            <p><a class="btn btn-lg btn-success btn-block" ng-click="go(); toTop(true);" ng-class="{'disabled' : !circs.ayc &amp;&amp; !circs.ac &amp;&amp; !circs.aa}">View List</a></p>
+            <p><a class="btn btn-lg btn-success btn-block" ng-click="step2(); toTop(true);" ng-class="{'disabled' : !circs.ayc &amp;&amp; !circs.ac &amp;&amp; !circs.aa}">View List</a></p>
           </div>
         </div>
       </accordion-group>
@@ -117,12 +114,12 @@
         <nav class="navbar navbar-default scroll-spy-nav" role="navigation" id="nav" data-scrollspy-nav>
           <div class="container-fluid">
             <ul class="nav nav-pills nav-stacked hidden-xs">
-              <li data-scrollspy-listen="tips"><a href="#tips" ng-click="resetHash()" class="">Tips</a></li>
-              <li data-scrollspy-listen="resources"><a href="#resources" ng-click="resetHash()" class="">Resources</a></li>
+              <li data-scrollspy-listen="tips"><a href="#tips" class="">Tips</a></li>
+              <li data-scrollspy-listen="resources"><a href="#resources" class="">Resources</a></li>
               <li><a ng-click="toTop()"><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</a></li>
             </ul>
-            <a href="#tips" ng-click="resetHash()" data-scrollspy-listen="tips" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Tips</a>
-            <a href="#resources" ng-click="resetHash()" data-scrollspy-listen="resources" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Resources</a>
+            <a href="#tips" data-scrollspy-listen="tips" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Tips</a>
+            <a href="#resources" data-scrollspy-listen="resources" class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg ">Resources</a>
             <a class="btn btn-default navbar-btn hidden-sm hidden-md hidden-lg pull-right" ng-click="toTop()"><span class="glyphicon glyphicon-chevron-up"></span> Top</a>
           </div>
         </nav>
@@ -130,12 +127,17 @@
       <div class="col-sm-8 col-xs-12">
         <div data-scrollspy-broadcast id="tips" class="scroll-spy-padding">
           <h1>Tips</h1>
+          <p><span class="show-for-small-only"></span></p>
           <accordion close-others="false">
             <accordion-group is-open="isopen" ng-repeat="tip in tips | typeFilter:types | circFilter:circs">
               <accordion-heading>
-                {{tip.title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': isopen, 'glyphicon-plus': !isopen}"></i>
+                <span class="glyphicon-full-height">
+                  <i class="glyphicon" ng-class="{'glyphicon-minus': isopen, 'glyphicon-plus': !isopen}"></i>
+                  </span>
+                  {{tip.title}}
               </accordion-heading>
-              {{tip.detail}} <a href="{{tip.link}}" target="_blank">{{tip.linkText}}</a>
+              {{tip.detail}}<br>
+              <a href="{{tip.link}}" target="_blank">{{tip.linkText}}</a>
             </accordion-group>
           </accordion>
         </div>
@@ -171,5 +173,29 @@ if (Element.prototype.addEventListener) {
 
 <script src="js/bootstrap.js"></script>
 <!-- <script src="js/bootstrap.min.js"></script> -->
+<script id="startover.htm" type="text/ng-template">
+<div class="modal-header">
+    <h3>Are you Sure?</h3>
+</div>
+<div class="modal-body">
+    <p>You will lose all changes you have made!</p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="cancel()">No</button>
+    <button class="btn btn-primary" ng-click="ok()">Yes</button>
+</div>
+</script>
+<script id="about.htm" type="text/ng-template">
+<div class="modal-header">
+    <h3>About the Missing Person Investigation Tips App</h3>
+</div>
+<div class="modal-body">
+    <p>Insert about statement here.</p>
+    <p><small>&copy; 2014 - NYS Division of Criminal Justice Services</small></p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Close</button>
+</div>
+</script>
 </body>
 </html>

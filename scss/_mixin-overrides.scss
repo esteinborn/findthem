@@ -35,8 +35,8 @@
     &:focus,
     &:active,
     &.active {
-      background-color: lighten($background, 20%);
-          border-color: lighten($border, 20%);
+      background-color: lighten($background, 10%);
+          border-color: lighten($border, 10%);
     }
   }
 

@@ -1,11 +1,4 @@
 /* jshint node: true */
-/*!
- * Bootstrap's Gruntfile
- * http://getbootstrap.com
- * Copyright 2013-2014 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-
 module.exports = function (grunt) {
   'use strict';
 
@@ -136,18 +129,36 @@ module.exports = function (grunt) {
       }
     },
 
+    notify: {
+      watch: {
+        options: {
+          title: 'Watch Task Complete',  // optional
+          message: 'All Tasks Completed Successfully!', //required
+        }
+      }
+    },
+
     watch: {
       src: {
         files: 'js/*.js',
-        tasks: ['newer:jshint:src', 'concat', 'newer:copy:all']
+        tasks: ['newer:jshint:src', 'concat', 'newer:copy:all', 'notify:watch'],
+        options: {
+          livereload: true
+        }
       },
       sass: {
         files: 'scss/**/*',
-        tasks: ['sass:dev', 'newer:copy:all']
+        tasks: ['sass:dev', 'newer:copy:all', 'notify:watch']
       },
       html: {
         files: '**/*.htm',
-        tasks: ['newer:copy:all']
+        tasks: ['newer:copy:all', 'notify:watch']
+      },
+      livereload: {
+        files: ['css/**/*.css'],
+        options: {
+          livereload: true
+        }
       }
     }
 

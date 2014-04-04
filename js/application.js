@@ -48,7 +48,6 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
   };
 
   $scope.go = function() {
-    $scope.toTop();
     $scope.step2();
   };
 
@@ -84,21 +83,20 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
   };
 
   $scope.toTop = function(ofTips) {
-    console.log(ofTips);
     if (ofTips) {
-      console.log("ofTips true");
-      window.scrollTo(0, 190);
+      if (window.matchMedia){
+        if (window.matchMedia("(min-width: 767px)").matches) {
+          setTimeout(function(){
+            window.scrollTo(0, 130);
+          }, 200);
+        } else {
+          setTimeout(function(){
+            window.scrollTo(0, 185);
+          }, 200);
+        }
+      }
     } else {
-      console.log("ofTips false");
       window.scrollTo(0, 0);
-    }
-  };
-
-  $scope.resetHash = function() {
-    if (history.pushState) {
-      setTimeout(function(){
-        history.pushState('', document.title, window.location.pathname);
-      }, 1);
     }
   };
 
