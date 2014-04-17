@@ -1,0 +1,27 @@
+.mobile-overflow {
+  overflow-y: scroll;
+  height: 95%;
+  max-width: 600px;
+
+  @media (min-width: $screen-desktop) {
+    overflow-y: auto;
+    height: auto;
+    max-width: inherit;
+  }
+
+}
+
+.modal {
+  h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    @media (min-width: $grid-float-breakpoint) {
+      font-size: 1.75em;
+      margin-top:22px;
+      margin-bottom: 11px;
+    }
+
+  }
+}

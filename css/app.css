@@ -97,6 +97,26 @@
 .panel-default > .panel-heading {
   padding: 0; }
 
+.mobile-overflow {
+  overflow-y: scroll;
+  height: 95%;
+  max-width: 600px; }
+  @media (min-width: 992px) {
+    .mobile-overflow {
+      overflow-y: auto;
+      height: auto;
+      max-width: inherit; } }
+
+.modal h3 {
+  font-size: 1.2em;
+  margin-top: 0;
+  margin-bottom: 0; }
+  @media (min-width: 768px) {
+    .modal h3 {
+      font-size: 1.75em;
+      margin-top: 22px;
+      margin-bottom: 11px; } }
+
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer;
   display: block; }

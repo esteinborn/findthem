@@ -58,16 +58,20 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
     $scope.closeTips();
     $scope.closeCirc();
     $scope.openCircPanel();
+
     $scope.types = {
       "mc": false,
       "mcs": false,
       "mva": false
     };
 
-    $scope.circs = {
+    $scope.ages = {
       "ayc": false,
       "ac": false,
-      "aa": false,
+      "aa": false
+    };
+
+    $scope.circs = {
       "alz": false,
       "dd": false,
       "ds": false,
@@ -143,7 +147,8 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
   $scope.openInfo = function () {
     var modalInstance = $modal.open({
       templateUrl: 'about.htm',
-      controller: AboutCtrl
+      controller: AboutCtrl,
+      modalClass: 'modal-lg mobile-overflow'
     });
   };
 
@@ -182,10 +187,13 @@ TipsApp.controller('TipsCtrl', ['$scope', '$filter', '$http', '$templateCache', 
     "mva": false
   };
 
-  $scope.circs = {
+  $scope.ages = {
     "ayc": false,
     "ac": false,
-    "aa": false,
+    "aa": false
+  };
+
+  $scope.circs = {
     "alz": false,
     "dd": false,
     "ds": false,

@@ -75,9 +75,9 @@
           <div class="col-sm-4">
             <fieldset>
             <legend>Age <span class="required">* required</span></legend>
-              <p><input type="checkbox" ng-model="circs.ayc" ng-click="isAgeSelected = true; circs.ac = false; circs.aa = false" id="young-child"><label for="young-child">Young Child 0-12</label></p>
-              <p><input type="checkbox" ng-model="circs.ac" ng-click="isAgeSelected = true; circs.ayc = false; circs.aa = false" id="child"><label for="child">Child 13-17</label></p>
-              <p><input type="checkbox" ng-model="circs.aa" ng-click="isAgeSelected = true; circs.ayc = false; circs.ac = false" id="adult"><label for="adult">Adult 18 and over</label></p>
+              <p><input type="checkbox" ng-model="ages.ayc" ng-click="isAgeSelected = true; ages.ac = false; ages.aa = false" id="young-child"><label for="young-child">Young Child 0-12</label></p>
+              <p><input type="checkbox" ng-model="ages.ac" ng-click="isAgeSelected = true; ages.ayc = false; ages.aa = false" id="child"><label for="child">Child 13-17</label></p>
+              <p><input type="checkbox" ng-model="ages.aa" ng-click="isAgeSelected = true; ages.ayc = false; ages.ac = false" id="adult"><label for="adult">Adult 18 and over</label></p>
             </fieldset>
           </div>
           <div class="col-sm-4">
@@ -102,7 +102,7 @@
             </fieldset>
           </div>
           <div class="col-xs-12">
-            <p><a class="btn btn-lg btn-success btn-block" ng-click="step2(); toTop(true);" ng-class="{'disabled' : !circs.ayc &amp;&amp; !circs.ac &amp;&amp; !circs.aa}">View List</a></p>
+            <p><a class="btn btn-lg btn-success btn-block" ng-click="step2(); toTop(true);" ng-class="{'disabled' : !ages.ayc &amp;&amp; !ages.ac &amp;&amp; !ages.aa}">View List</a></p>
           </div>
         </div>
       </accordion-group>
@@ -129,7 +129,7 @@
           <h1>Tips</h1>
           <p><span class="show-for-small-only"></span></p>
           <accordion close-others="false">
-            <accordion-group is-open="isopen" ng-repeat="tip in tips | typeFilter:types | circFilter:circs">
+            <accordion-group is-open="isopen" ng-repeat="tip in tips | circFilter:circs | ageFilter:ages | typeFilter:types">
               <accordion-heading>
                 <span class="glyphicon-full-height">
                   <i class="glyphicon" ng-class="{'glyphicon-minus': isopen, 'glyphicon-plus': !isopen}"></i>
@@ -147,13 +147,15 @@
             <h3>{{resource.name}}</h3>
             <p><b>For help with:</b> {{resource.details}}</p>
             <p ng-if="resource.phn"><span class="glyphicon glyphicon-earphone"></span> <a href="tel:{{resource.phn}}">{{resource.phn}}</a></p>
-            <p ng-if="resource.url"><span class="glyphicon glyphicon-globe"></span> <a href="{{resource.url}}">{{resource.url}}</a></p>
+            <p ng-if="resource.url"><span class="glyphicon glyphicon-globe"></span> <a href="{{resource.url}}" target="_blank">{{resource.url}}</a></p>
           </div>
         </div>
       </div>
     </div>
   </div>
   <footer>
+    <h5>Disclaimer:</h5>
+    <p>This tips and resource web application has been prepared to assist law enforcement agencies in the investigation and search of missing persons. The information is meant to provide guidance and highlight points to consider during a missing person investigation, especially in the initial stages. The resources listed are not to be considered a complete listing, but are suggested resources that may provide assistance with an investigation. It is not intended to direct policy development nor does it purport to contain the only acceptable practices.</p>
   </footer>
 </div>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.7/fastclick.min.js"></script>
@@ -190,7 +192,17 @@ if (Element.prototype.addEventListener) {
     <h3>About the Missing Person Investigation Tips App</h3>
 </div>
 <div class="modal-body">
-    <p>Insert about statement here.</p>
+    <p>Time plays a critical role in the effort to safely locate a missing person, especially an endangered child or vulnerable adult who are at a credible risk of harm.</p>
+    <ul>
+      <li>76% of abducted children who are located deceased are murdered within the first three hours.</li>
+      <li>91% of the total U.S. deaths reported in children with autism ages 14 and younger are subsequent to an episode of wandering or elopement.</li>
+      <li>46% of adults with Alzheimer&rsquo;s disease who and are not located within 24-hours are located deceased.</li>
+    </ul>
+    <p>These statistics underscore the importance of rapidly evaluating a missing person incident, identifying the best course of action and deploying resource to assist with safely locating the missing person.</p>
+    <p>The New York State Missing Persons Investigation App was designed to assist law enforcement officers with the investigation and search for a missing person. By providing a mobile friendly application, first responders and investigators can access a list of suggested tips and resources while on-scene. By selecting the applicable circumstance and conditions, a list of tips is generated. Each tip can be expanded to view more detailed information and listed resources provide phone numbers and web links.</p>
+    <p>For more information contact the New York State Missing Persons Clearinghouse<br>
+      <a href="tel:1-800-346-3543">1-800-346-3543</a><br>
+      <a href="mailto:missingpersons@djcs.ny.gov">missingpersons@djcs.ny.gov</a></p>
     <p><small>&copy; 2014 - NYS Division of Criminal Justice Services</small></p>
 </div>
 <div class="modal-footer">

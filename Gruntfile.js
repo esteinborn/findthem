@@ -2,22 +2,11 @@
 module.exports = function (grunt) {
   'use strict';
 
-  // Force use of Unix newlines
-  grunt.util.linefeed = '\n';
-
   // Project configuration.
   grunt.initConfig({
 
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*!\n' +
-              ' * Bootstrap v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
-              ' * Copyright 2011-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-              ' * Licensed under <%= _.pluck(pkg.licenses, "type") %> (<%= _.pluck(pkg.licenses, "url") %>)\n' +
-              ' */\n',
-    jqueryCheck: 'if (typeof jQuery === \'undefined\') { throw new Error(\'Bootstrap requires jQuery\') }\n\n',
-
-    // Task configuration.
 
     jshint: {
       options: {
@@ -35,7 +24,7 @@ module.exports = function (grunt) {
       },
       src: {
         // src: ['js/application.js', 'js/angular-wizard.js', 'js/filters.js', 'js/ng-scrollspy.js', 'js/angular-ui-bootstrap.js']
-        src: ['js/*.js', '!js/*.min.js']
+        src: ['js/*.js', '!js/*.min.js', '!js/bootstrap.js']
       }
     },
 
@@ -56,7 +45,7 @@ module.exports = function (grunt) {
       bootstrap: {
         src: [
           'js/application.js',
-          'js/angular-ui-bootstrap.js',
+          'js/ui-bootstrap-custom-tpls-0.10.0.js',
           'js/controllers.js',
           'js/filters.js',
           'js/ng-scrollspy.js'
@@ -99,30 +88,13 @@ module.exports = function (grunt) {
       }
     },
 
-    usebanner: {
-      dist: {
-        options: {
-          position: 'top',
-          banner: '<%= banner %>'
-        },
-        files: {
-          src: [
-            'css/<%= pkg.name %>.css',
-            'css/<%= pkg.name %>.min.css',
-            'css/<%= pkg.name %>-theme.css',
-            'css/<%= pkg.name %>-theme.min.css',
-          ]
-        }
-      }
-    },
-
     copy: {
       all: {
         files: [
           {
             expand: true,
             cwd: './',
-            src: ['fonts/**/*', 'js/**/*', 'scss/**/*', 'css/**/*', '*.htm',],
+            src: ['fonts/**/*', 'data/**/*', 'js/**/*', 'scss/**/*', 'css/**/*', '*.htm',],
             dest: 'J:/missing/tips/'
           }
         ]
@@ -175,10 +147,10 @@ module.exports = function (grunt) {
   grunt.registerTask('dist-js', ['concat', 'uglify']);
 
   // CSS development task.
-  grunt.registerTask('dev-css', ['sass:dev', 'usebanner']);
+  grunt.registerTask('dev-css', ['sass:dev']);
 
   // CSS distribution task.
-  grunt.registerTask('dist-css', ['sass:dist', 'usebanner']);
+  grunt.registerTask('dist-css', ['sass:dist']);
 
   // Full development task.
   grunt.registerTask('dev', ['dev-css', 'dev-js', 'copy:all']);
