@@ -12,5 +12,5 @@
 }
 
 .collapsing {
-    @include transition(height .2s ease);
+    @include transition(height .25s ease);
 }

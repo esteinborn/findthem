@@ -24,7 +24,7 @@ module.exports = function (grunt) {
       },
       src: {
         // src: ['js/application.js', 'js/angular-wizard.js', 'js/filters.js', 'js/ng-scrollspy.js', 'js/angular-ui-bootstrap.js']
-        src: ['js/*.js', '!js/*.min.js', '!js/bootstrap.js']
+        src: ['js/*.js', '!js/*.min.js', '!js/bootstrap.js', '!js/fastclick.js']
       }
     },
 
@@ -50,17 +50,18 @@ module.exports = function (grunt) {
           'js/filters.js',
           'js/ng-scrollspy.js'
         ],
-        dest: 'js/<%= pkg.name %>.js'
+        dest: 'js/findthem.js'
       }
     },
 
     uglify: {
       bootstrap: {
         options: {
-          report: 'min'
+          report: 'min',
+          mangle: false
         },
-        src: 'js/<%= pkg.name %>.js',
-        dest: 'js/<%= pkg.name %>.min.js'
+        src: 'js/findthem.js',
+        dest: 'js/findthem.min.js'
       }
     },
 
@@ -79,7 +80,7 @@ module.exports = function (grunt) {
       },
       dist: {                            // Target
         options: {                       // Target options
-          style: 'compressed'
+          outputStyle: 'compressed'
         },
         files: {                         // Dictionary of files
           'css/bootstrap.css': 'scss/bootstrap.scss',       // 'destination': 'source'
@@ -94,8 +95,8 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: './',
-            src: ['fonts/**/*', 'data/**/*', 'js/**/*', 'scss/**/*', 'css/**/*', '*.htm',],
-            dest: 'J:/missing/tips/'
+            src: ['fonts/**/*', 'data/**/*', 'js/**/*', 'scss/**/*', 'css/**/*', '*.htm', '*.png', '*.ico'],
+            dest: 'J:/missing/findthem/'
           }
         ]
       }
@@ -159,6 +160,6 @@ module.exports = function (grunt) {
   grunt.registerTask('dist', ['dist-css', 'dist-js', 'copy:all']);
 
   // Default task.
-  grunt.registerTask('default', ['dev', 'watch']);
+  grunt.registerTask('default', ['dev', 'notify:watch', 'watch']);
 
 };

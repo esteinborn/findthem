@@ -1,11 +1,11 @@
 .mobile-overflow {
   overflow-y: scroll;
-  height: 95%;
+  height: 90%;
   max-width: 600px;
 
   @media (min-width: $screen-desktop) {
     overflow-y: auto;
-    height: auto;
+    // height: auto;
     max-width: inherit;
   }
 

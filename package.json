@@ -1,10 +1,10 @@
 {
-  "name": "bootstrap",
-  "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
-  "version": "3.0.3",
+  "name": "Find Them",
+  "description": "A Missing Person Investigation Tips/Tools Web Application for Law Enforcement.",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/twbs/bootstrap.git"
+    "url": "https://github.com/esteinborn/findthem.git"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
